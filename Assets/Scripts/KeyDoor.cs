@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,13 +40,20 @@ public class KeyDoor : MonoBehaviour
         play_sound();
         if(keyType == Key.KeyType.badKey)
         {
-            SceneManager.LoadScene("Success_End");
+            StartCoroutine(LoadendScene());
+     
         }
     }
 
     public void play_sound()
     {
         audio.Play();
+    }
+
+    IEnumerator LoadendScene()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Success_End");
     }
    
 }
