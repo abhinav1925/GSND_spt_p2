@@ -11,6 +11,8 @@ public class KeyHolder : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         audio = GetComponent<AudioSource>();
     }
 
