@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class KeyHolder : MonoBehaviour
 {
@@ -54,6 +54,15 @@ public class KeyHolder : MonoBehaviour
             }
           
         }
+
+
+        if (collider.gameObject.tag == "Zombie")
+        {
+            SceneManager.LoadScene("Fail_End");
+        }
     }
+
+
+    
 }
 

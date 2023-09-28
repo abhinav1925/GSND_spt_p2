@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 
 public class KeyDoor : MonoBehaviour
@@ -25,9 +28,16 @@ public class KeyDoor : MonoBehaviour
 
     public void OpenDoor()
     {
-        gameObject.SetActive(false);
-        doorAni.SetTrigger(Ani_DoorOpen);
+        //gameObject.SetActive(false);
+        doorAni.SetBool("isOpen", true);
+        if(keyType == Key.KeyType.badKey)
+        {
+            SceneManager.LoadScene("Success_End");
+        }
     }
+
+
+   
 }
 
 
