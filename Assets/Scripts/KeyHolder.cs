@@ -7,7 +7,12 @@ using UnityEngine.SceneManagement;
 public class KeyHolder : MonoBehaviour
 {
     private List<Key.KeyType> keyList;
+    private AudioSource audio;
 
+    void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
 
     private void Awake()
     {
@@ -40,6 +45,7 @@ public class KeyHolder : MonoBehaviour
         if (key != null)
         {
             AddKey(key.GetKeyType());
+            playSound();
             Destroy(key.gameObject);
         }
 
@@ -47,12 +53,12 @@ public class KeyHolder : MonoBehaviour
         KeyDoor keyDoor = collider.GetComponent<KeyDoor>();
         if (keyDoor != null)
         {
-            if(ContainsKey(keyDoor.GetKeyType()))
+            if (ContainsKey(keyDoor.GetKeyType()))
             {
                 RemoveKey(keyDoor.GetKeyType());
                 keyDoor.OpenDoor();
             }
-          
+
         }
 
 
@@ -62,7 +68,11 @@ public class KeyHolder : MonoBehaviour
         }
     }
 
+    private void playSound()
+    {
+        audio.Play();
+    }
 
-    
+
 }
 

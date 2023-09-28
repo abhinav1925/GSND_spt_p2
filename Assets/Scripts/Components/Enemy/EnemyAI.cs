@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class EnemyAI : MonoBehaviour
     private NavMeshAgent m_Agent;
     [SerializeField]
     private Animator m_Anim;
+
+    private AudioSource audio;
 
     public Transform[] PatrolPoints;
     public float PatrolIntervalDelay;
@@ -30,6 +33,12 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         Anim_IsMoving = Animator.StringToHash("IsMoving");
+    }
+
+    private void Start()
+    {
+        audio = GetComponent<AudioSource>();
+        playSound();
     }
 
     private void Update()
@@ -80,5 +89,11 @@ public class EnemyAI : MonoBehaviour
         {
             m_Anim.SetBool(Anim_IsMoving, false);
         }
+    }
+
+    private void playSound()
+    {
+        audio.loop = true;
+        audio.Play();
     }
 }

@@ -12,6 +12,13 @@ public class KeyDoor : MonoBehaviour
     [SerializeField] private Key.KeyType keyType;
     [SerializeField] private Animator doorAni;
     [SerializeField] private int Ani_DoorOpen;
+    private AudioSource audio;
+
+
+    void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
 
 
     public Key.KeyType GetKeyType()
@@ -30,13 +37,17 @@ public class KeyDoor : MonoBehaviour
     {
         //gameObject.SetActive(false);
         doorAni.SetBool("isOpen", true);
+        play_sound();
         if(keyType == Key.KeyType.badKey)
         {
             SceneManager.LoadScene("Success_End");
         }
     }
 
-
+    public void play_sound()
+    {
+        audio.Play();
+    }
    
 }
 
